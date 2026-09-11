@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { MapPin, ArrowUpRight, Menu, X, Printer } from "lucide-react";
 
 import logo from "@/assets/logo-dark.jpg.asset.json";
 import chamber from "@/assets/chamber.jpg.asset.json";
@@ -10,12 +11,16 @@ import tonerHp from "@/assets/toner-hp.png.asset.json";
 import tonerSamsung from "@/assets/toner-samsung.png.asset.json";
 import embroidery from "@/assets/embroidery.jpg.asset.json";
 import paving from "@/assets/paving.jpg.asset.json";
+import patchPanels from "@/assets/patch-panels.jpg.asset.json";
+import rackSwitch from "@/assets/rack-switch.jpg.asset.json";
+import dataPoint from "@/assets/data-point.jpg.asset.json";
 
 const ADDRESS = "Plot no 657 Leratong Avenue, Wallmansthal";
 const MAP_QUERY = encodeURIComponent("Plot 657 Leratong Avenue Wallmansthal, Pretoria");
 const MAP_LINK = `https://www.google.com/maps/search/?api=1&query=${MAP_QUERY}`;
 const MAP_EMBED = `https://www.google.com/maps?q=${MAP_QUERY}&output=embed`;
 const WHATSAPP = "https://wa.me/27793289837";
+const CONTACT_MAIL = ["mandetrd11cc", "gmail.com"].join("@");
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -25,7 +30,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Network points, server room setup, computer peripherals, toners and cartridges, media printing, embroidery and printing. Wallmansthal, Pretoria. Trading since 2009.",
+          "Network points, server room setup, computer peripherals, toners and cartridges, media printing, embroidery and printing. Wallmansthal, Pretoria.",
       },
       {
         property: "og:title",
@@ -34,7 +39,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Network points, server rooms, peripherals, toners, media printing and embroidery. Serving South Africa since 2009.",
+          "Network points, server rooms, peripherals, toners, media printing and embroidery across South Africa.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -48,7 +53,6 @@ export const Route = createFileRoute("/")({
           "@type": "LocalBusiness",
           name: "Moon And Earth Trading And Projects 11cc",
           foundingDate: "2009",
-          telephone: "+27793289837",
           address: {
             "@type": "PostalAddress",
             streetAddress: "Plot no 657 Leratong Avenue",
@@ -70,48 +74,94 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-const services = [
+type Service = {
+  title: string;
+  body: string;
+  points: string[];
+  images: { url: string; alt: string }[];
+};
+
+const services: Service[] = [
   {
     title: "Network Points",
-    image: trenching.url,
-    alt: "Team excavating a trench for network cabling along a residential street",
     body: "Structured cabling and data point installation — trenching, sleeving, cable pulling and termination for homes, schools, clinics and municipal sites.",
     points: ["CAT6 & fibre trenching", "Data point termination", "Testing & certification"],
+    images: [
+      {
+        url: trenching.url,
+        alt: "Team excavating a trench for network cabling along a residential street",
+      },
+      {
+        url: compaction.url,
+        alt: "Crew compacting soil after installing underground network cabling",
+      },
+      {
+        url: dataPoint.url,
+        alt: "Wall-mounted data point and power outlet installed in an office trunking rail",
+      },
+    ],
   },
   {
     title: "Server Room Setup",
-    image: chamber.url,
-    alt: "Cable distribution chamber ready for installation on site",
-    body: "Complete server and comms room builds: racks, patch panels, distribution chambers, power and neat cable management built to last.",
-    points: ["Rack & patch panel builds", "Chambers & manholes", "Clean cable management"],
+    body: "Complete server and comms room builds: racks, patch panels, switches, power distribution and neat cable management built to last.",
+    points: ["Rack & patch panel builds", "Switch & power installs", "Clean cable management"],
+    images: [
+      {
+        url: patchPanels.url,
+        alt: "Full server rack with labelled patch panels and neatly dressed network cabling",
+      },
+      {
+        url: rackSwitch.url,
+        alt: "Rack-mounted network switch, patch panel and power distribution unit",
+      },
+      {
+        url: chamber.url,
+        alt: "Cable distribution chamber ready for installation on site",
+      },
+    ],
   },
   {
     title: "Computer Peripherals",
-    image: serverBox.url,
-    alt: "Technician assembling networking enclosure and peripheral hardware on site",
     body: "Supply and installation of computers, monitors, keyboards, routers, switches, enclosures and everyday IT hardware for offices of any size.",
     points: ["Hardware supply", "On-site installation", "Ongoing support"],
+    images: [
+      {
+        url: serverBox.url,
+        alt: "Technician assembling a networking enclosure and peripheral hardware on site",
+      },
+    ],
   },
   {
     title: "Toner And Cartridges",
-    image: tonerHp.url,
-    alt: "Genuine HP LaserJet 410A toner cartridges in black, magenta, cyan and yellow",
     body: "Genuine HP, Samsung and compatible toners and cartridges for every major printer, delivered to your office door.",
     points: ["HP & Samsung stock", "Bulk office orders", "Fast delivery"],
+    images: [
+      {
+        url: tonerHp.url,
+        alt: "Genuine HP LaserJet 410A toner cartridges in black, magenta, cyan and yellow",
+      },
+      {
+        url: tonerSamsung.url,
+        alt: "Samsung colour toner cartridge range for office printers",
+      },
+    ],
   },
   {
     title: "Media Printing",
-    image: tonerSamsung.url,
-    alt: "Samsung colour toner cartridge range used for media and document printing",
     body: "Banners, signage, posters, flyers and large-format media printing — designed, printed and finished to a professional standard.",
     points: ["Banners & signage", "Flyers & posters", "Large format"],
+    images: [],
   },
   {
     title: "Embroidery And Printing",
-    image: embroidery.url,
-    alt: "Navy golf shirt with embroidered Lepelle-Nkumpi Local Municipality badge",
     body: "Corporate branding on golf shirts, overalls, caps and PPE — crisp embroidery and heat-transfer printing for teams and municipalities.",
     points: ["Corporate workwear", "Logo embroidery", "PPE branding"],
+    images: [
+      {
+        url: embroidery.url,
+        alt: "Navy golf shirt with embroidered Lepelle-Nkumpi Local Municipality badge",
+      },
+    ],
   },
 ];
 
@@ -121,7 +171,150 @@ const stats = [
   { value: "100%", label: "On-site delivery" },
 ];
 
+const navLinks = [
+  { href: "#services", label: "Services" },
+  { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" },
+];
+
+function ServiceCard({ service }: { service: Service }) {
+  const [active, setActive] = useState(0);
+  const current = service.images[active];
+
+  return (
+    <article className="group flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-[var(--shadow-card)]">
+      {current ? (
+        <div className="relative overflow-hidden">
+          <img
+            src={current.url}
+            alt={current.alt}
+            loading="lazy"
+            className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          {service.images.length > 1 && (
+            <div className="absolute inset-x-0 bottom-0 flex gap-2 bg-gradient-to-t from-background/90 to-transparent p-3">
+              {service.images.map((img, i) => (
+                <button
+                  key={img.url}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-label={`Show photo ${i + 1} of ${service.title}`}
+                  aria-current={i === active}
+                  className={`h-12 w-12 overflow-hidden rounded-md border transition-opacity ${
+                    i === active
+                      ? "border-primary opacity-100"
+                      : "border-border/60 opacity-70 hover:opacity-100"
+                  }`}
+                >
+                  <img src={img.url} alt="" className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="flex h-52 w-full items-center justify-center bg-secondary/40">
+          <Printer className="h-12 w-12 text-primary" aria-hidden="true" />
+        </div>
+      )}
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-xl font-bold">{service.title}</h3>
+        <p className="mt-3 text-sm text-muted-foreground">{service.body}</p>
+        <ul className="mt-5 space-y-2 text-sm">
+          {service.points.map((p) => (
+            <li key={p} className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              {p}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
+  );
+}
+
+function ContactForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const n = name.trim();
+    const em = email.trim();
+    const msg = message.trim();
+    if (!n || n.length > 100) return setError("Please enter your name (max 100 characters).");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em) || em.length > 255)
+      return setError("Please enter a valid email address.");
+    if (!msg || msg.length > 1000)
+      return setError("Please enter a message (max 1000 characters).");
+    setError("");
+    const subject = encodeURIComponent(`Website enquiry from ${n}`);
+    const body = encodeURIComponent(`Name: ${n}\nEmail: ${em}\n\n${msg}`);
+    window.location.href = `mailto:${CONTACT_MAIL}?subject=${subject}&body=${body}`;
+  };
+
+  return (
+    <form
+      onSubmit={onSubmit}
+      className="space-y-4 rounded-2xl border border-border/70 bg-card p-6"
+    >
+      <div>
+        <h3 className="text-lg font-semibold">Send us a message</h3>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Tell us what you need and we will get back to you.
+        </p>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="block text-sm">
+          <span className="text-muted-foreground">Name</span>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            maxLength={100}
+            required
+            className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+          />
+        </label>
+        <label className="block text-sm">
+          <span className="text-muted-foreground">Email</span>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            maxLength={255}
+            required
+            className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+          />
+        </label>
+      </div>
+      <label className="block text-sm">
+        <span className="text-muted-foreground">Message</span>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          maxLength={1000}
+          rows={5}
+          required
+          className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+        />
+      </label>
+      {error && <p className="text-sm text-destructive">{error}</p>}
+      <button
+        type="submit"
+        className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+      >
+        Send message
+        <ArrowUpRight className="h-4 w-4" />
+      </button>
+    </form>
+  );
+}
+
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <a
@@ -141,27 +334,47 @@ function Index() {
             alt="Moon And Earth Trading And Projects 11cc logo"
             className="h-11 w-auto rounded-md"
           />
-          <nav className="hidden gap-7 text-sm text-muted-foreground md:flex">
-            <a className="transition-colors hover:text-foreground" href="#services">
-              Services
+          <div className="flex items-center gap-2">
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Chat with us on WhatsApp"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              <WhatsAppIcon className="h-5 w-5" />
             </a>
-            <a className="transition-colors hover:text-foreground" href="#about">
-              About
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#contact">
-              Contact
-            </a>
-          </nav>
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            <WhatsAppIcon className="h-4 w-4" />
-            079 328 9837
-          </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen((o) => !o)}
+              aria-expanded={menuOpen}
+              aria-controls="main-menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-secondary"
+            >
+              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <nav
+            id="main-menu"
+            className="border-t border-border/60 bg-background/95 backdrop-blur"
+          >
+            <div className="mx-auto flex max-w-6xl flex-col px-5 py-2">
+              {navLinks.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-lg px-2 py-3 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </nav>
+        )}
       </header>
 
       <main>
@@ -178,17 +391,15 @@ function Index() {
               <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
                 Moon And Earth Trading And Projects 11cc installs network points and server
                 rooms, supplies IT hardware and toners, and brands your team with embroidery
-                and print — all under one roof since 2009.
+                and print — all under one roof.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noreferrer"
+                  href="#contact"
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
                 >
-                  <WhatsAppIcon className="h-4 w-4" />
                   Request a quote
+                  <ArrowUpRight className="h-4 w-4" />
                 </a>
                 <a
                   href="#services"
@@ -237,31 +448,7 @@ function Index() {
           </p>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
-              <article
-                key={s.title}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-[var(--shadow-card)]"
-              >
-                <div className="overflow-hidden">
-                  <img
-                    src={s.image}
-                    alt={s.alt}
-                    loading="lazy"
-                    className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-xl font-bold">{s.title}</h3>
-                  <p className="mt-3 text-sm text-muted-foreground">{s.body}</p>
-                  <ul className="mt-5 space-y-2 text-sm">
-                    {s.points.map((p) => (
-                      <li key={p} className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                        {p}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
+              <ServiceCard key={s.title} service={s} />
             ))}
           </div>
         </section>
@@ -279,10 +466,10 @@ function Index() {
             <div>
               <h2 className="text-3xl font-bold md:text-4xl">About the company</h2>
               <p className="mt-5 text-muted-foreground">
-                We have been trading since 2009, growing from consumable supply into a
-                full-service infrastructure and branding partner. Our crews work across
-                municipal, education and private sites, and we handle each job end to end —
-                planning, installation, supply and after-care.
+                We have grown from consumable supply into a full-service infrastructure and
+                branding partner. Our crews work across municipal, education and private
+                sites, and we handle each job end to end — planning, installation, supply and
+                after-care.
               </p>
               <p className="mt-4 text-muted-foreground">
                 Whether it is a single toner delivery or a full server room and network
@@ -301,7 +488,7 @@ function Index() {
 
         <section id="contact" className="mx-auto max-w-6xl px-5 py-20">
           <h2 className="text-3xl font-bold md:text-4xl">Visit or contact us</h2>
-          <div className="mt-10 grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
+          <div className="mt-10 grid gap-8 md:grid-cols-2">
             <div className="space-y-5">
               <div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5">
                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
@@ -319,46 +506,17 @@ function Index() {
                   </a>
                 </div>
               </div>
-              <div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5">
-                <Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                <div>
-                  <p className="font-semibold">WhatsApp / Phone</p>
-                  <a
-                    href={WHATSAPP}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-1 inline-block text-sm text-muted-foreground hover:text-foreground"
-                  >
-                    079 328 9837
-                  </a>
-                </div>
-              </div>
-              <div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5">
-                <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                <div>
-                  <p className="font-semibold">Website</p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    www.moon&amp;earthtrading11cc.co.za
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5">
-                <Clock className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                <div>
-                  <p className="font-semibold">Trading since</p>
-                  <p className="mt-1 text-sm text-muted-foreground">2009</p>
-                </div>
+              <div className="overflow-hidden rounded-2xl border border-border/70">
+                <iframe
+                  title="Map to Moon And Earth Trading And Projects 11cc office"
+                  src={MAP_EMBED}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="h-[320px] w-full border-0"
+                />
               </div>
             </div>
-            <div className="overflow-hidden rounded-2xl border border-border/70">
-              <iframe
-                title="Map to Moon And Earth Trading And Projects 11cc office"
-                src={MAP_EMBED}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-[420px] w-full border-0"
-              />
-            </div>
+            <ContactForm />
           </div>
         </section>
       </main>
