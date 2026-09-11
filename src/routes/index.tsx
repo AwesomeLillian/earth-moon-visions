@@ -101,8 +101,8 @@ const services = [
   },
   {
     title: "Media Printing",
-    image: paving.url,
-    alt: "Completed red and grey paved driveway showing quality of site finishing work",
+    image: tonerSamsung.url,
+    alt: "Samsung colour toner cartridge range used for media and document printing",
     body: "Banners, signage, posters, flyers and large-format media printing — designed, printed and finished to a professional standard.",
     points: ["Banners & signage", "Flyers & posters", "Large format"],
   },
@@ -270,10 +270,10 @@ function Index() {
           <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:items-center">
             <div className="overflow-hidden rounded-3xl border border-border/70">
               <img
-                src={tonerSamsung.url}
-                alt="Samsung toner cartridge range in black, cyan, magenta and yellow"
+                src={paving.url}
+                alt="Completed paving and site finishing work at a client property"
                 loading="lazy"
-                className="h-full w-full bg-white object-contain p-6"
+                className="h-full w-full object-cover"
               />
             </div>
             <div>
