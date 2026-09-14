@@ -14,6 +14,11 @@ import paving from "@/assets/paving.jpg.asset.json";
 import patchPanels from "@/assets/patch-panels.jpg.asset.json";
 import rackSwitch from "@/assets/rack-switch.jpg.asset.json";
 import dataPoint from "@/assets/data-point.jpg.asset.json";
+import cyberpunkFiber from "@/assets/cyberpunk-fiber.jpg.asset.json";
+import serverRackFull from "@/assets/server-rack-full.jpg.asset.json";
+import pavingRoad from "@/assets/paving-road.jpg.asset.json";
+import peripherals from "@/assets/peripherals.jpg.asset.json";
+import mediaPrinting from "@/assets/media-printing.jpg.asset.json";
 
 const ADDRESS = "Plot no 657 Leratong Avenue, Wallmansthal";
 const MAP_QUERY = encodeURIComponent("Plot 657 Leratong Avenue Wallmansthal, Pretoria");
