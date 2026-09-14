@@ -14,6 +14,11 @@ import paving from "@/assets/paving.jpg.asset.json";
 import patchPanels from "@/assets/patch-panels.jpg.asset.json";
 import rackSwitch from "@/assets/rack-switch.jpg.asset.json";
 import dataPoint from "@/assets/data-point.jpg.asset.json";
+import cyberpunkFiber from "@/assets/cyberpunk-fiber.jpg.asset.json";
+import serverRackFull from "@/assets/server-rack-full.jpg.asset.json";
+import pavingRoad from "@/assets/paving-road.jpg.asset.json";
+import peripherals from "@/assets/peripherals.jpg.asset.json";
+import mediaPrinting from "@/assets/media-printing.jpg.asset.json";
 
 const ADDRESS = "Plot no 657 Leratong Avenue, Wallmansthal";
 const MAP_QUERY = encodeURIComponent("Plot 657 Leratong Avenue Wallmansthal, Pretoria");
@@ -81,85 +86,133 @@ type Service = {
   images: { url: string; alt: string }[];
 };
 
-const services: Service[] = [
+type ServiceGroup = {
+  group: string;
+  services: Service[];
+};
+
+const serviceGroups: ServiceGroup[] = [
   {
-    title: "Network Points",
-    body: "Structured cabling and data point installation — trenching, sleeving, cable pulling and termination for homes, schools, clinics and municipal sites.",
-    points: ["CAT6 & fibre trenching", "Data point termination", "Testing & certification"],
-    images: [
+    group: "Network Points",
+    services: [
       {
-        url: trenching.url,
-        alt: "Team excavating a trench for network cabling along a residential street",
+        title: "Network Points",
+        body: "Structured cabling and data point installation — trenching, sleeving, cable pulling and termination for homes, schools, clinics and municipal sites.",
+        points: ["CAT6 & fibre trenching", "Data point termination", "Testing & certification"],
+        images: [
+          {
+            url: trenching.url,
+            alt: "Team excavating a trench for network cabling along a residential street",
+          },
+          {
+            url: compaction.url,
+            alt: "Crew compacting soil after installing underground network cabling",
+          },
+          {
+            url: dataPoint.url,
+            alt: "Wall-mounted data point and power outlet installed in an office trunking rail",
+          },
+        ],
       },
       {
-        url: compaction.url,
-        alt: "Crew compacting soil after installing underground network cabling",
+        title: "Server Room Setup",
+        body: "Complete server and comms room builds: racks, patch panels, switches, power distribution and neat cable management built to last.",
+        points: ["Rack & patch panel builds", "Switch & power installs", "Clean cable management"],
+        images: [
+          {
+            url: serverRackFull.url,
+            alt: "Floor-to-ceiling server cabinet with patch panels and structured cabling",
+          },
+          {
+            url: patchPanels.url,
+            alt: "Full server rack with labelled patch panels and neatly dressed network cabling",
+          },
+          {
+            url: rackSwitch.url,
+            alt: "Rack-mounted network switch, patch panel and power distribution unit",
+          },
+          {
+            url: chamber.url,
+            alt: "Cable distribution chamber ready for installation on site",
+          },
+        ],
       },
       {
-        url: dataPoint.url,
-        alt: "Wall-mounted data point and power outlet installed in an office trunking rail",
+        title: "Computer Peripherals",
+        body: "Supply and installation of computers, monitors, keyboards, routers, switches, enclosures and everyday IT hardware for offices of any size.",
+        points: ["Hardware supply", "On-site installation", "Ongoing support"],
+        images: [
+          {
+            url: peripherals.url,
+            alt: "Office desk setup with monitor, keyboard, mouse, router and network switch",
+          },
+          {
+            url: serverBox.url,
+            alt: "Technician assembling a networking enclosure and peripheral hardware on site",
+          },
+        ],
       },
     ],
   },
   {
-    title: "Server Room Setup",
-    body: "Complete server and comms room builds: racks, patch panels, switches, power distribution and neat cable management built to last.",
-    points: ["Rack & patch panel builds", "Switch & power installs", "Clean cable management"],
-    images: [
+    group: "Media & Printing",
+    services: [
       {
-        url: patchPanels.url,
-        alt: "Full server rack with labelled patch panels and neatly dressed network cabling",
+        title: "Toners And Cartridges",
+        body: "Genuine HP, Samsung and compatible toners and cartridges for every major printer, delivered to your office door.",
+        points: ["HP & Samsung stock", "Bulk office orders", "Fast delivery"],
+        images: [
+          {
+            url: tonerHp.url,
+            alt: "Genuine HP LaserJet 410A toner cartridges in black, magenta, cyan and yellow",
+          },
+          {
+            url: tonerSamsung.url,
+            alt: "Samsung colour toner cartridge range for office printers",
+          },
+        ],
       },
       {
-        url: rackSwitch.url,
-        alt: "Rack-mounted network switch, patch panel and power distribution unit",
+        title: "Media Printing",
+        body: "Banners, signage, posters, flyers and large-format media printing — designed, printed and finished to a professional standard.",
+        points: ["Banners & signage", "Flyers & posters", "Large format"],
+        images: [
+          {
+            url: mediaPrinting.url,
+            alt: "Large format printer producing a colourful banner alongside printed posters",
+          },
+        ],
       },
       {
-        url: chamber.url,
-        alt: "Cable distribution chamber ready for installation on site",
-      },
-    ],
-  },
-  {
-    title: "Computer Peripherals",
-    body: "Supply and installation of computers, monitors, keyboards, routers, switches, enclosures and everyday IT hardware for offices of any size.",
-    points: ["Hardware supply", "On-site installation", "Ongoing support"],
-    images: [
-      {
-        url: serverBox.url,
-        alt: "Technician assembling a networking enclosure and peripheral hardware on site",
-      },
-    ],
-  },
-  {
-    title: "Toner And Cartridges",
-    body: "Genuine HP, Samsung and compatible toners and cartridges for every major printer, delivered to your office door.",
-    points: ["HP & Samsung stock", "Bulk office orders", "Fast delivery"],
-    images: [
-      {
-        url: tonerHp.url,
-        alt: "Genuine HP LaserJet 410A toner cartridges in black, magenta, cyan and yellow",
-      },
-      {
-        url: tonerSamsung.url,
-        alt: "Samsung colour toner cartridge range for office printers",
+        title: "Embroidery Printing",
+        body: "Corporate branding on golf shirts, overalls, caps and PPE — crisp embroidery and heat-transfer printing for teams and municipalities.",
+        points: ["Corporate workwear", "Logo embroidery", "PPE branding"],
+        images: [
+          {
+            url: embroidery.url,
+            alt: "Navy golf shirt with embroidered Lepelle-Nkumpi Local Municipality badge",
+          },
+        ],
       },
     ],
   },
   {
-    title: "Media Printing",
-    body: "Banners, signage, posters, flyers and large-format media printing — designed, printed and finished to a professional standard.",
-    points: ["Banners & signage", "Flyers & posters", "Large format"],
-    images: [],
-  },
-  {
-    title: "Embroidery And Printing",
-    body: "Corporate branding on golf shirts, overalls, caps and PPE — crisp embroidery and heat-transfer printing for teams and municipalities.",
-    points: ["Corporate workwear", "Logo embroidery", "PPE branding"],
-    images: [
+    group: "Paving & Kerbs",
+    services: [
       {
-        url: embroidery.url,
-        alt: "Navy golf shirt with embroidered Lepelle-Nkumpi Local Municipality badge",
+        title: "Paving And Kerbs",
+        body: "Paving, kerbing and site finishing for driveways, streets and property entrances — laid level, edged neatly and built to carry traffic.",
+        points: ["Driveways & walkways", "Street paving", "Kerbing & edging"],
+        images: [
+          {
+            url: paving.url,
+            alt: "Completed paving and site finishing work at a client property",
+          },
+          {
+            url: pavingRoad.url,
+            alt: "Paved residential street with painted centre line completed by the team",
+          },
+        ],
       },
     ],
   },
@@ -332,18 +385,9 @@ function Index() {
           <img
             src={logo.url}
             alt="Moon And Earth Trading And Projects 11cc logo"
-            className="h-11 w-auto rounded-md"
+            className="h-20 w-auto rounded-md md:h-24"
           />
           <div className="flex items-center gap-2">
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Chat with us on WhatsApp"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              <WhatsAppIcon className="h-5 w-5" />
-            </a>
             <button
               type="button"
               onClick={() => setMenuOpen((o) => !o)}
@@ -382,7 +426,7 @@ function Index() {
           <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-28">
             <div>
               <p className="text-xs uppercase tracking-[0.35em] text-primary">
-                Wallmansthal · South Africa
+                MOON &amp; EARTH TRADING
               </p>
               <h1 className="mt-5 text-4xl leading-[1.05] font-bold md:text-6xl">
                 Connecting your world,
@@ -424,8 +468,8 @@ function Index() {
             <div className="relative">
               <div className="overflow-hidden rounded-3xl border border-border/70 shadow-[var(--shadow-card)]">
                 <img
-                  src={compaction.url}
-                  alt="Crew compacting soil after installing underground network cabling"
+                  src={cyberpunkFiber.url}
+                  alt="Field crew installing fibre cabling linked to a glowing server rack"
                   className="h-[420px] w-full object-cover"
                   loading="eager"
                 />
@@ -446,9 +490,21 @@ function Index() {
             Six service lines, one accountable team — from the trench outside to the branded
             shirt on your staff.
           </p>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <ServiceCard key={s.title} service={s} />
+          <div className="mt-12 space-y-16">
+            {serviceGroups.map((g) => (
+              <div key={g.group}>
+                <div className="flex items-center gap-4">
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+                    {g.group}
+                  </h3>
+                  <span className="h-px flex-1 bg-border/70" />
+                </div>
+                <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                  {g.services.map((s) => (
+                    <ServiceCard key={s.title} service={s} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </section>
@@ -457,8 +513,8 @@ function Index() {
           <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:items-center">
             <div className="overflow-hidden rounded-3xl border border-border/70">
               <img
-                src={paving.url}
-                alt="Completed paving and site finishing work at a client property"
+                src={trenching.url}
+                alt="Team excavating a trench for network cabling along a residential street"
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
@@ -527,15 +583,13 @@ function Index() {
             <img
               src={logo.url}
               alt="Moon And Earth Trading And Projects 11cc logo"
-              className="h-10 w-auto rounded"
+              className="h-24 w-auto rounded md:h-28"
             />
           </div>
           <div className="text-sm text-muted-foreground">
-            <p>Proudly trading since 2009.</p>
-            <p className="mt-1">{ADDRESS}</p>
+            <p>{ADDRESS}</p>
             <p className="mt-1">
-              © {new Date().getFullYear()} Moon And Earth Trading And Projects 11cc. All
-              rights reserved.
+              © 2009 Moon And Earth Trading And Projects 11cc. All rights reserved.
             </p>
           </div>
         </div>
