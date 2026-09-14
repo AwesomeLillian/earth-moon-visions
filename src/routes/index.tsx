@@ -385,18 +385,9 @@ function Index() {
           <img
             src={logo.url}
             alt="Moon And Earth Trading And Projects 11cc logo"
-            className="h-11 w-auto rounded-md"
+            className="h-20 w-auto rounded-md md:h-24"
           />
           <div className="flex items-center gap-2">
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Chat with us on WhatsApp"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              <WhatsAppIcon className="h-5 w-5" />
-            </a>
             <button
               type="button"
               onClick={() => setMenuOpen((o) => !o)}
