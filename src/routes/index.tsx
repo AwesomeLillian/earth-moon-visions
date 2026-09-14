@@ -86,85 +86,133 @@ type Service = {
   images: { url: string; alt: string }[];
 };
 
-const services: Service[] = [
+type ServiceGroup = {
+  group: string;
+  services: Service[];
+};
+
+const serviceGroups: ServiceGroup[] = [
   {
-    title: "Network Points",
-    body: "Structured cabling and data point installation — trenching, sleeving, cable pulling and termination for homes, schools, clinics and municipal sites.",
-    points: ["CAT6 & fibre trenching", "Data point termination", "Testing & certification"],
-    images: [
+    group: "Network Points",
+    services: [
       {
-        url: trenching.url,
-        alt: "Team excavating a trench for network cabling along a residential street",
+        title: "Network Points",
+        body: "Structured cabling and data point installation — trenching, sleeving, cable pulling and termination for homes, schools, clinics and municipal sites.",
+        points: ["CAT6 & fibre trenching", "Data point termination", "Testing & certification"],
+        images: [
+          {
+            url: trenching.url,
+            alt: "Team excavating a trench for network cabling along a residential street",
+          },
+          {
+            url: compaction.url,
+            alt: "Crew compacting soil after installing underground network cabling",
+          },
+          {
+            url: dataPoint.url,
+            alt: "Wall-mounted data point and power outlet installed in an office trunking rail",
+          },
+        ],
       },
       {
-        url: compaction.url,
-        alt: "Crew compacting soil after installing underground network cabling",
+        title: "Server Room Setup",
+        body: "Complete server and comms room builds: racks, patch panels, switches, power distribution and neat cable management built to last.",
+        points: ["Rack & patch panel builds", "Switch & power installs", "Clean cable management"],
+        images: [
+          {
+            url: serverRackFull.url,
+            alt: "Floor-to-ceiling server cabinet with patch panels and structured cabling",
+          },
+          {
+            url: patchPanels.url,
+            alt: "Full server rack with labelled patch panels and neatly dressed network cabling",
+          },
+          {
+            url: rackSwitch.url,
+            alt: "Rack-mounted network switch, patch panel and power distribution unit",
+          },
+          {
+            url: chamber.url,
+            alt: "Cable distribution chamber ready for installation on site",
+          },
+        ],
       },
       {
-        url: dataPoint.url,
-        alt: "Wall-mounted data point and power outlet installed in an office trunking rail",
+        title: "Computer Peripherals",
+        body: "Supply and installation of computers, monitors, keyboards, routers, switches, enclosures and everyday IT hardware for offices of any size.",
+        points: ["Hardware supply", "On-site installation", "Ongoing support"],
+        images: [
+          {
+            url: peripherals.url,
+            alt: "Office desk setup with monitor, keyboard, mouse, router and network switch",
+          },
+          {
+            url: serverBox.url,
+            alt: "Technician assembling a networking enclosure and peripheral hardware on site",
+          },
+        ],
       },
     ],
   },
   {
-    title: "Server Room Setup",
-    body: "Complete server and comms room builds: racks, patch panels, switches, power distribution and neat cable management built to last.",
-    points: ["Rack & patch panel builds", "Switch & power installs", "Clean cable management"],
-    images: [
+    group: "Media & Printing",
+    services: [
       {
-        url: patchPanels.url,
-        alt: "Full server rack with labelled patch panels and neatly dressed network cabling",
+        title: "Toners And Cartridges",
+        body: "Genuine HP, Samsung and compatible toners and cartridges for every major printer, delivered to your office door.",
+        points: ["HP & Samsung stock", "Bulk office orders", "Fast delivery"],
+        images: [
+          {
+            url: tonerHp.url,
+            alt: "Genuine HP LaserJet 410A toner cartridges in black, magenta, cyan and yellow",
+          },
+          {
+            url: tonerSamsung.url,
+            alt: "Samsung colour toner cartridge range for office printers",
+          },
+        ],
       },
       {
-        url: rackSwitch.url,
-        alt: "Rack-mounted network switch, patch panel and power distribution unit",
+        title: "Media Printing",
+        body: "Banners, signage, posters, flyers and large-format media printing — designed, printed and finished to a professional standard.",
+        points: ["Banners & signage", "Flyers & posters", "Large format"],
+        images: [
+          {
+            url: mediaPrinting.url,
+            alt: "Large format printer producing a colourful banner alongside printed posters",
+          },
+        ],
       },
       {
-        url: chamber.url,
-        alt: "Cable distribution chamber ready for installation on site",
-      },
-    ],
-  },
-  {
-    title: "Computer Peripherals",
-    body: "Supply and installation of computers, monitors, keyboards, routers, switches, enclosures and everyday IT hardware for offices of any size.",
-    points: ["Hardware supply", "On-site installation", "Ongoing support"],
-    images: [
-      {
-        url: serverBox.url,
-        alt: "Technician assembling a networking enclosure and peripheral hardware on site",
-      },
-    ],
-  },
-  {
-    title: "Toner And Cartridges",
-    body: "Genuine HP, Samsung and compatible toners and cartridges for every major printer, delivered to your office door.",
-    points: ["HP & Samsung stock", "Bulk office orders", "Fast delivery"],
-    images: [
-      {
-        url: tonerHp.url,
-        alt: "Genuine HP LaserJet 410A toner cartridges in black, magenta, cyan and yellow",
-      },
-      {
-        url: tonerSamsung.url,
-        alt: "Samsung colour toner cartridge range for office printers",
+        title: "Embroidery Printing",
+        body: "Corporate branding on golf shirts, overalls, caps and PPE — crisp embroidery and heat-transfer printing for teams and municipalities.",
+        points: ["Corporate workwear", "Logo embroidery", "PPE branding"],
+        images: [
+          {
+            url: embroidery.url,
+            alt: "Navy golf shirt with embroidered Lepelle-Nkumpi Local Municipality badge",
+          },
+        ],
       },
     ],
   },
   {
-    title: "Media Printing",
-    body: "Banners, signage, posters, flyers and large-format media printing — designed, printed and finished to a professional standard.",
-    points: ["Banners & signage", "Flyers & posters", "Large format"],
-    images: [],
-  },
-  {
-    title: "Embroidery And Printing",
-    body: "Corporate branding on golf shirts, overalls, caps and PPE — crisp embroidery and heat-transfer printing for teams and municipalities.",
-    points: ["Corporate workwear", "Logo embroidery", "PPE branding"],
-    images: [
+    group: "Paving & Kerbs",
+    services: [
       {
-        url: embroidery.url,
-        alt: "Navy golf shirt with embroidered Lepelle-Nkumpi Local Municipality badge",
+        title: "Paving And Kerbs",
+        body: "Paving, kerbing and site finishing for driveways, streets and property entrances — laid level, edged neatly and built to carry traffic.",
+        points: ["Driveways & walkways", "Street paving", "Kerbing & edging"],
+        images: [
+          {
+            url: paving.url,
+            alt: "Completed paving and site finishing work at a client property",
+          },
+          {
+            url: pavingRoad.url,
+            alt: "Paved residential street with painted centre line completed by the team",
+          },
+        ],
       },
     ],
   },
