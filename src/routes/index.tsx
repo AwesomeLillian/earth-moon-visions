@@ -583,15 +583,13 @@ function Index() {
             <img
               src={logo.url}
               alt="Moon And Earth Trading And Projects 11cc logo"
-              className="h-10 w-auto rounded"
+              className="h-24 w-auto rounded md:h-28"
             />
           </div>
           <div className="text-sm text-muted-foreground">
-            <p>Proudly trading since 2009.</p>
-            <p className="mt-1">{ADDRESS}</p>
+            <p>{ADDRESS}</p>
             <p className="mt-1">
-              © {new Date().getFullYear()} Moon And Earth Trading And Projects 11cc. All
-              rights reserved.
+              © 2009 Moon And Earth Trading And Projects 11cc. All rights reserved.
             </p>
           </div>
         </div>
