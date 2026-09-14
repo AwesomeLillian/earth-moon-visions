@@ -426,7 +426,7 @@ function Index() {
           <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-28">
             <div>
               <p className="text-xs uppercase tracking-[0.35em] text-primary">
-                Wallmansthal · South Africa
+                MOON &amp; EARTH TRADING
               </p>
               <h1 className="mt-5 text-4xl leading-[1.05] font-bold md:text-6xl">
                 Connecting your world,
@@ -468,8 +468,8 @@ function Index() {
             <div className="relative">
               <div className="overflow-hidden rounded-3xl border border-border/70 shadow-[var(--shadow-card)]">
                 <img
-                  src={compaction.url}
-                  alt="Crew compacting soil after installing underground network cabling"
+                  src={cyberpunkFiber.url}
+                  alt="Field crew installing fibre cabling linked to a glowing server rack"
                   className="h-[420px] w-full object-cover"
                   loading="eager"
                 />
@@ -513,8 +513,8 @@ function Index() {
           <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:items-center">
             <div className="overflow-hidden rounded-3xl border border-border/70">
               <img
-                src={paving.url}
-                alt="Completed paving and site finishing work at a client property"
+                src={trenching.url}
+                alt="Team excavating a trench for network cabling along a residential street"
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
