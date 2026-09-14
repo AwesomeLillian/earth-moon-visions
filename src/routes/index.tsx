@@ -499,9 +499,21 @@ function Index() {
             Six service lines, one accountable team — from the trench outside to the branded
             shirt on your staff.
           </p>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <ServiceCard key={s.title} service={s} />
+          <div className="mt-12 space-y-16">
+            {serviceGroups.map((g) => (
+              <div key={g.group}>
+                <div className="flex items-center gap-4">
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+                    {g.group}
+                  </h3>
+                  <span className="h-px flex-1 bg-border/70" />
+                </div>
+                <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                  {g.services.map((s) => (
+                    <ServiceCard key={s.title} service={s} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </section>
