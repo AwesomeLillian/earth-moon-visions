@@ -96,28 +96,15 @@ const serviceGroups: ServiceGroup[] = [
     group: "Network Points",
     services: [
       {
-        title: "Network Points",
-        body: "Structured cabling and data point installation — trenching, sleeving, cable pulling and termination for homes, schools, clinics and municipal sites.",
-        points: ["CAT6 & fibre trenching", "Data point termination", "Testing & certification"],
-        images: [
-          {
-            url: trenching.url,
-            alt: "Team excavating a trench for network cabling along a residential street",
-          },
-          {
-            url: compaction.url,
-            alt: "Crew compacting soil after installing underground network cabling",
-          },
-          {
-            url: dataPoint.url,
-            alt: "Wall-mounted data point and power outlet installed in an office trunking rail",
-          },
-        ],
-      },
-      {
         title: "Server Room Setup",
-        body: "Complete server and comms room builds: racks, patch panels, switches, power distribution and neat cable management built to last.",
-        points: ["Rack & patch panel builds", "Switch & power installs", "Clean cable management"],
+        body: "Structured cabling and complete comms room builds — trenching, sleeving, cable pulling and data point termination, plus racks, patch panels, switches, power distribution and neat cable management built to last.",
+        points: [
+          "CAT6 & fibre trenching",
+          "Data point termination",
+          "Rack & patch panel builds",
+          "Switch & power installs",
+          "Testing & certification",
+        ],
         images: [
           {
             url: serverRackFull.url,
@@ -130,6 +117,18 @@ const serviceGroups: ServiceGroup[] = [
           {
             url: rackSwitch.url,
             alt: "Rack-mounted network switch, patch panel and power distribution unit",
+          },
+          {
+            url: dataPoint.url,
+            alt: "Wall-mounted data point and power outlet installed in an office trunking rail",
+          },
+          {
+            url: trenching.url,
+            alt: "Team excavating a trench for network cabling along a residential street",
+          },
+          {
+            url: compaction.url,
+            alt: "Crew compacting soil after installing underground network cabling",
           },
           {
             url: chamber.url,
