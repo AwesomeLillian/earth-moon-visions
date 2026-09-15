@@ -16,30 +16,37 @@ jobs:
     env:
       ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Install
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: List files
+      - uses: actions/checkout@v4
+      
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        
+      - name: Install with Bun
+        run: bun install
+        
+      - name: Build with Bun
+        run: bun run build
+        
+      - name: Find build folder
+        id: find
         run: |
-          echo "--- Root files ---"
-          ls -la
-          echo "--- Checking for dist ---"
-          ls -la ./dist || echo "NO DIST FOLDER"
-          echo "--- Checking for build ---"
-          ls -la ./build || echo "NO BUILD FOLDER"
+          if [ -d dist ]; then echo "path=dist" >> $GITHUB_OUTPUT;
+          elif [ -d build ]; then echo "path=build" >> $GITHUB_OUTPUT;
+          elif [ -d .output/public ]; then echo "path=.output/public" >> $GITHUB_OUTPUT;
+          elif [ -d .output/client ]; then echo "path=.output/client" >> $GITHUB_OUTPUT;
+          elif [ -d .output ]; then echo "path=.output" >> $GITHUB_OUTPUT;
+          else echo "path=dist" >> $GITHUB_OUTPUT; ls -la; fi
+          echo "Using ${{ steps.find.outputs.path }}"
+          ls -la ${{ steps.find.outputs.path }}
+          
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: ${{ steps.find.outputs.path }}
+
   deploy:
     environment:
       name: github-pages
