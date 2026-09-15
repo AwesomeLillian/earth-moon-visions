@@ -4,11 +4,10 @@ import { MapPin, ArrowUpRight, Menu, X, Printer } from "lucide-react";
 
 const asset = (file: string) => ({ url: `/images/${file}` });
 
-const logo = asset("logo-dark.jpg");
+const logo = asset("logo-clean.jpg");
 const chamber = asset("chamber.jpg");
 const trenching = asset("trenching.jpg");
 const compaction = asset("compaction.jpg");
-const serverBox = asset("server-box.jpg");
 const tonerHp = asset("toner-hp.png");
 const tonerSamsung = asset("toner-samsung.png");
 const embroidery = asset("embroidery.jpg");
@@ -87,6 +86,7 @@ type Service = {
   points: string[];
   images: { url: string; alt: string }[];
   fit?: "contain";
+  imageHeight?: "standard" | "tall";
 };
 
 type ServiceGroup = {
@@ -100,6 +100,8 @@ const serviceGroups: ServiceGroup[] = [
     services: [
       {
         title: "Server Room Setup",
+        fit: "contain",
+        imageHeight: "tall",
         body: "Structured cabling and complete comms room builds — trenching, sleeving, cable pulling and data point termination, plus racks, patch panels, switches, power distribution and neat cable management built to last.",
         points: [
           "CAT6 & fibre trenching",
@@ -148,10 +150,6 @@ const serviceGroups: ServiceGroup[] = [
             url: peripherals.url,
             alt: "Office desk setup with monitor, keyboard, mouse, router and network switch",
           },
-          {
-            url: serverBox.url,
-            alt: "Technician assembling a networking enclosure and peripheral hardware on site",
-          },
         ],
       },
     ],
@@ -161,6 +159,8 @@ const serviceGroups: ServiceGroup[] = [
     services: [
       {
         title: "Toners And Cartridges",
+        fit: "contain",
+        imageHeight: "tall",
         body: "Genuine HP, Samsung and compatible toners and cartridges for every major printer, delivered to your office door.",
         points: ["HP & Samsung stock", "Bulk office orders", "Fast delivery"],
         images: [
@@ -204,6 +204,8 @@ const serviceGroups: ServiceGroup[] = [
     services: [
       {
         title: "Paving And Kerbs",
+        fit: "contain",
+        imageHeight: "tall",
         body: "Paving, kerbing and site finishing for driveways, streets and property entrances — laid level, edged neatly and built to carry traffic.",
         points: ["Driveways & walkways", "Street paving", "Kerbing & edging"],
         images: [
@@ -245,8 +247,10 @@ function ServiceCard({ service }: { service: Service }) {
             src={current.url}
             alt={current.alt}
             loading="lazy"
-            className={`h-52 w-full transition-transform duration-500 group-hover:scale-105 ${
-              service.fit === "contain" ? "bg-secondary/40 object-contain" : "object-cover"
+            className={`${service.imageHeight === "tall" ? "h-72 sm:h-80" : "h-56 sm:h-64"} w-full transition-transform duration-500 group-hover:scale-[1.02] ${
+              service.fit === "contain"
+                ? "bg-secondary/40 object-contain p-2 sm:p-3"
+                : "object-cover"
             }`}
           />
           {service.images.length > 1 && (
@@ -387,11 +391,13 @@ function Index() {
 
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
-          <img
-            src={logo.url}
-            alt="Moon And Earth Trading And Projects 11cc logo"
-            className="h-20 w-auto rounded-md md:h-24"
-          />
+          <div className="h-14 w-[190px] overflow-hidden md:h-16 md:w-[230px]">
+            <img
+              src={logo.url}
+              alt="Moon And Earth Trading And Projects 11cc logo"
+              className="h-full w-full object-contain object-left"
+            />
+          </div>
           <div className="flex items-center gap-2">
             <button
               type="button"
@@ -470,12 +476,12 @@ function Index() {
                 ))}
               </dl>
             </div>
-            <div className="relative">
-              <div className="overflow-hidden rounded-3xl border border-border/70 shadow-[var(--shadow-card)]">
+            <div className="relative -mx-5 md:mx-0">
+              <div className="overflow-hidden md:rounded-3xl md:shadow-[var(--shadow-card)]">
                 <img
                   src={cyberpunkFiber.url}
                   alt="Field crew installing fibre cabling linked to a glowing server rack"
-                  className="h-[420px] w-full bg-secondary/30 object-contain"
+                  className="aspect-video w-full object-cover md:aspect-[4/3] md:min-h-[460px] md:object-cover"
                   loading="eager"
                 />
               </div>
@@ -584,11 +590,11 @@ function Index() {
 
       <footer className="border-t border-border/60 bg-card/40">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
+          <div className="h-20 w-[270px] max-w-full overflow-hidden">
             <img
               src={logo.url}
               alt="Moon And Earth Trading And Projects 11cc logo"
-              className="h-24 w-auto rounded md:h-28"
+              className="h-full w-full object-contain object-left"
             />
           </div>
           <div className="text-sm text-muted-foreground">
