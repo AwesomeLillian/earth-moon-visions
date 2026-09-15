@@ -1,15 +1,12 @@
 name: Deploy to GitHub Pages
-
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,36 +14,18 @@ jobs:
       ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        
-      - name: Install with Bun
-        run: bun install
-        
-      - name: Build with Bun
-        run: bun run build
-        
-      - name: Find build folder
-        id: find
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install
+      - run: bun run build
+      - name: DEBUG - what did we build?
         run: |
-          if [ -d dist ]; then echo "path=dist" >> $GITHUB_OUTPUT;
-          elif [ -d build ]; then echo "path=build" >> $GITHUB_OUTPUT;
-          elif [ -d .output/public ]; then echo "path=.output/public" >> $GITHUB_OUTPUT;
-          elif [ -d .output/client ]; then echo "path=.output/client" >> $GITHUB_OUTPUT;
-          elif [ -d .output ]; then echo "path=.output" >> $GITHUB_OUTPUT;
-          else echo "path=dist" >> $GITHUB_OUTPUT; ls -la; fi
-          echo "Using ${{ steps.find.outputs.path }}"
-          ls -la ${{ steps.find.outputs.path }}
-          
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+          ls -la .output/public || true
+          ls -la dist || true
+          find .output dist -name "index.html" 2>/dev/null | head -20
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ steps.find.outputs.path }}
-
+          path: '.output/public'
   deploy:
     environment:
       name: github-pages
@@ -54,6 +33,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
