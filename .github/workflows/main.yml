@@ -13,6 +13,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,10 +22,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install dependencies
+      - name: Install
         run: npm install
       - name: Build
         run: npm run build
+      - name: List files
+        run: |
+          echo "--- Root files ---"
+          ls -la
+          echo "--- Checking for dist ---"
+          ls -la ./dist || echo "NO DIST FOLDER"
+          echo "--- Checking for build ---"
+          ls -la ./build || echo "NO BUILD FOLDER"
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
