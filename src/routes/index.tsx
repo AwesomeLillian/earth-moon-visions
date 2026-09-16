@@ -390,7 +390,7 @@ function Index() {
       </a>
 
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 lg:px-8">
           <div className="h-16 w-[235px] overflow-hidden md:h-[4.5rem] md:w-[260px]">
             <img
               src={logo.url}
@@ -416,7 +416,7 @@ function Index() {
             id="main-menu"
             className="border-t border-border/60 bg-background/95 backdrop-blur"
           >
-            <div className="mx-auto flex max-w-6xl flex-col px-5 py-2">
+             <div className="mx-auto flex max-w-7xl flex-col px-5 py-2 lg:px-8">
               {navLinks.map((l) => (
                 <a
                   key={l.href}
@@ -434,12 +434,12 @@ function Index() {
 
       <main>
         <section className="surface-glow relative overflow-hidden border-b border-border/60">
-          <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-28">
-            <div>
+          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:min-h-[620px] md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-center md:gap-10 md:py-20 lg:gap-16 lg:px-8 lg:py-24">
+            <div className="min-w-0 md:py-4">
               <p className="text-xs uppercase tracking-[0.35em] text-primary">
                 MOON &amp; EARTH TRADING
               </p>
-              <h1 className="mt-5 text-4xl leading-[1.05] font-bold md:text-6xl">
+              <h1 className="mt-5 text-4xl leading-[1.05] font-bold md:text-5xl lg:text-6xl">
                 Connecting your world,
                 <span className="block text-primary">from the ground up.</span>
               </h1>
@@ -476,12 +476,12 @@ function Index() {
                 ))}
               </dl>
             </div>
-            <div className="relative -mx-5 md:mx-0">
-              <div className="overflow-hidden md:rounded-3xl md:shadow-[var(--shadow-card)]">
+            <div className="relative -mx-5 min-w-0 md:mx-0">
+              <div className="overflow-hidden bg-secondary/30 md:rounded-3xl md:shadow-[var(--shadow-card)]">
                 <img
                   src={cyberpunkFiber.url}
                   alt="Field crew installing fibre cabling linked to a glowing server rack"
-                  className="aspect-video w-full object-cover md:aspect-[4/3] md:min-h-[460px] md:object-cover"
+                  className="aspect-video w-full object-cover md:aspect-auto md:max-h-[560px] md:min-h-[440px] md:object-contain lg:min-h-[500px]"
                   loading="eager"
                 />
               </div>
