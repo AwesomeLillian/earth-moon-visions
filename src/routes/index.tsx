@@ -300,8 +300,10 @@ function ContactForm() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [status, setStatus] = useState("");
+  const [sending, setSending] = useState(false);
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const n = name.trim();
     const em = email.trim();
@@ -311,10 +313,31 @@ function ContactForm() {
       return setError("Please enter a valid email address.");
     if (!msg || msg.length > 1000)
       return setError("Please enter a message (max 1000 characters).");
+    
     setError("");
-    const subject = encodeURIComponent(`Website enquiry from ${n}`);
-    const body = encodeURIComponent(`Name: ${n}\nEmail: ${em}\n\n${msg}`);
-    window.location.href = `mailto:${CONTACT_MAIL}?subject=${subject}&body=${body}`;
+    setSending(true);
+    setStatus("Sending...");
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: n, email: em, message: msg }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setStatus("Message sent successfully! ✅");
+        setName(""); setEmail(""); setMessage("");
+      } else {
+        setStatus("");
+        setError(data.error || "Failed to send, try again");
+      }
+    } catch {
+      setStatus("");
+      setError("Failed to send, try again. Check internet.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -363,17 +386,18 @@ function ContactForm() {
         />
       </label>
       {error && <p className="text-sm text-destructive">{error}</p>}
+      {status && <p className="text-sm text-green-600 font-medium">{status}</p>}
       <button
         type="submit"
-        className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+        disabled={sending}
+        className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
       >
-        Send message
+        {sending ? "Sending..." : "Send message"}
         <ArrowUpRight className="h-4 w-4" />
       </button>
     </form>
   );
 }
-
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
 
