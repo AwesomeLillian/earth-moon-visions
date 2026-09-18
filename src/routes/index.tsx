@@ -415,7 +415,7 @@ function Index() {
 
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 lg:px-8">
-          <div className="h-24 w- overflow-visible md:h-28 md:w-">
+          <div className="h-12 w- overflow-visible md:h-14 md:w-">
             <img
               src={logo.url}
               alt="Moon And Earth Trading And Projects 11cc logo"
