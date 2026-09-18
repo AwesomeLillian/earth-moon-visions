@@ -31,45 +31,48 @@ const CONTACT_MAIL = ["mandetrd11cc", "gmail.com"].join("@");
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
-    meta: [
-      { title: "Moon And Earth Trading And Projects 11cc | Wallmansthal" },
-      {
-        name: "description",
-        content:
-          "Network points, server room setup, computer peripherals, toners and cartridges, media printing, embroidery and printing. Wallmansthal, Pretoria.",
-      },
-      {
-        property: "og:title",
-        content: "Moon And Earth Trading And Projects 11cc",
-      },
-      {
-        property: "og:description",
-        content:
-          "Network points, server rooms, peripherals, toners, media printing and embroidery across South Africa.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: "Moon And Earth Trading And Projects 11cc",
-          foundingDate: "2009",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Plot no 657 Leratong Avenue",
-            addressLocality: "Wallmansthal",
-            addressCountry: "ZA",
-          },
-        }),
-      },
-    ],
-  }),
-});
+  meta: [
+    { 
+      title: "Moon and Earth Trading and Projects | Network Points, Server Rooms, Toners, Paving | Pretoria" 
+    },
+    {
+      name: "description",
+      content:
+        "Moon and Earth Trading and Projects 11cc (Moon & Earth) - network points, server room setup, fibre trenching, computer peripherals, toners & cartridges, media printing, embroidery, paving & kerbs in Wallmansthal, Pretoria and South Africa. Trading since 2009.",
+    },
+    {
+      name: "keywords",
+      content: "moon and earth, moon & earth, moon and earth trading, moon earth trading and projects, moon and earth trading and projects 11cc, network points pretoria, server room setup wallmansthal, paving pretoria, toners pretoria"
+    },
+    { property: "og:title", content: "Moon And Earth Trading And Projects 11cc - Moon & Earth" },
+    { property: "og:description", content: "Moon and Earth Trading: Network points, server rooms, toners, printing, embroidery, paving in Pretoria." },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "/" },
+    { name: "robots", content: "index, follow" },
+  ],
+  links: [{ rel: "canonical", href: "/" }],
+  scripts: [
+    {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name: "Moon And Earth Trading And Projects 11cc",
+        alternateName: ["Moon and Earth", "Moon & Earth", "Moon & Earth Trading", "Moon Earth Trading"],
+        foundingDate: "2009",
+        description: "Network points, server room setup, peripherals, toners, media printing, embroidery, paving and kerbs.",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Plot no 657 Leratong Avenue",
+          addressLocality: "Wallmansthal",
+          addressRegion: "Gauteng",
+          addressCountry: "ZA",
+        },
+        areaServed: "South Africa",
+      }),
+    },
+  ],
+}),
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
