@@ -464,7 +464,7 @@ function Index() {
           <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-16 md:min-h-[620px] md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-center md:gap-10 md:py-20 lg:gap-16 lg:px-8 lg:py-24">
             <div className="min-w-0 md:py-4">
               <p className="text-xs uppercase tracking-[0.35em] text-primary">
-                MOON &amp; EARTH TRADING
+                MOON AND EARTH TRADING AND PROJECTS 11CC
               </p>
               <h1 className="mt-5 text-4xl leading-[1.05] font-bold md:text-5xl lg:text-6xl">
                 Connecting your world,
