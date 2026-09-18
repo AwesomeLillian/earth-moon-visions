@@ -4,7 +4,7 @@ import { MapPin, ArrowUpRight, Menu, X, Printer } from "lucide-react";
 
 const asset = (file: string) => ({ url: `/images/${file}` });
 
-const logo = asset("logo-clean.jpg");
+const logo = asset("logo-dark.png");
 const chamber = asset("chamber.jpg");
 const trenching = asset("trenching.jpg");
 const compaction = asset("compaction.jpg");
