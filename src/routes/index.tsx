@@ -245,9 +245,9 @@ function Index() {
         <section id="contact" className="w-full border-t border-border/60 bg-card/40">
           <div className="mx-auto w-full max-w- px-5 py-16 lg:px-10 xl:px-12">
             <h2 className="text-3xl font-bold md:text-4xl text-left">VISIT OR CONTACT US</h2>
-            <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start">
-              {/* LEFT */}
-              <div className="flex flex-col gap-5 w-full">
+            <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-stretch">
+              {/* LEFT - h-full so it matches right form height */}
+              <div className="flex h-full flex-col gap-5">
                 <div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div>
@@ -258,7 +258,8 @@ function Index() {
                     </a>
                   </div>
                 </div>
-                <div className="overflow-hidden rounded-2xl border border-border/70 h-">
+                {/* MAP - flex-1 = fills all remaining height to match form */}
+                <div className="flex-1 overflow-hidden rounded-2xl border border-border/70 min-h-">
                   <iframe
                     title="Map"
                     src={MAP_EMBED}
@@ -269,7 +270,7 @@ function Index() {
                 </div>
               </div>
               {/* RIGHT */}
-              <div className="w-full">
+              <div className="h-full">
                 <ContactForm />
               </div>
             </div>
