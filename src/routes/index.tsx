@@ -136,13 +136,18 @@ function ServiceCard({ service }: { service: Service }) {
   const current = service.images[active];
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-[var(--shadow-card)]">
-      {current ? (
-        <div className="relative overflow-hidden">
-          <img src={current.url} alt={current.alt} loading="lazy" className={`${service.imageHeight === "tall" ? "h-72 sm:h-80" : "h-56 sm:h-64"} w-full transition-transform duration-500 group-hover:scale-[1.02] ${service.fit === "contain" ? "bg-secondary/40 object-contain p-2 sm:p-3" : "object-cover"}`} />
+      {current? (
+        <div className="relative overflow-hidden aspect-[4/3] w-full bg-secondary/20">
+          <img
+            src={current.url}
+            alt={current.alt}
+            loading="lazy"
+            className={`h-full w-full transition-transform duration-500 group-hover:scale-[1.02] ${service.fit === "contain"? "object-contain p-3" : "object-cover"}`}
+          />
           {service.images.length > 1 && (
             <div className="absolute inset-x-0 bottom-0 flex gap-2 bg-gradient-to-t from-background/90 to-transparent p-3">
               {service.images.map((img, i) => (
-                <button key={img.url} type="button" onClick={() => setActive(i)} className={`h-12 w-12 overflow-hidden rounded-md border ${i === active ? "border-primary opacity-100" : "border-border/60 opacity-70 hover:opacity-100"}`}>
+                <button key={img.url} type="button" onClick={() => setActive(i)} className={`h-12 w-12 overflow-hidden rounded-md border ${i === active? "border-primary opacity-100" : "border-border/60 opacity-70 hover:opacity-100"}`}>
                   <img src={img.url} alt="" className="h-full w-full object-cover" />
                 </button>
               ))}
@@ -150,10 +155,10 @@ function ServiceCard({ service }: { service: Service }) {
           )}
         </div>
       ) : (
-        <div className="flex h-52 w-full items-center justify-center bg-secondary/40"><Printer className="h-12 w-12 text-primary" /></div>
+        <div className="flex aspect-[4/3] w-full items-center justify-center bg-secondary/40"><Printer className="h-12 w-12 text-primary" /></div>
       )}
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-xl font-bold">{service.title}</h3>
+        <h3 className="text-xl font-bold text-primary">{service.title}</h3>
         <p className="mt-3 text-sm text-muted-foreground">{service.body}</p>
         <ul className="mt-5 space-y-2 text-sm">{service.points.map((p) => (<li key={p} className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-primary" />{p}</li>))}</ul>
       </div>
