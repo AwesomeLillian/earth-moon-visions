@@ -200,46 +200,37 @@ function ContactForm() {
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div className="min-h-screen w-full bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <a href={WHATSAPP} target="_blank" rel="noreferrer" className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-black shadow-[var(--glow-orbit)] transition-transform hover:scale-105"><WhatsAppIcon className="h-7 w-7" /></a>
-
-      {/* HEADER - full width */}
-      <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="flex w-full items-center justify-between gap-4 px-5 py-2.5 lg:px-10">
-          <div className="h-12 w- overflow-visible md:h-14 md:w-">
-            <img src={logo.url} alt="Moon And Earth logo" className="h-full w-full object-contain object-left" />
+      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-2.5 lg:px-8">
+          <div className="h-12 w-[320px] overflow-visible md:h-14 md:w-[380px]">
+            <img src={logo.url} alt="Moon And Earth Trading And Projects 11cc logo" className="h-full w-full object-contain object-left" />
           </div>
-          <button type="button" onClick={() => setMenuOpen((o) =>!o)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border">{menuOpen? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
+          <div className="flex items-center gap-2">
+            <button type="button" onClick={() => setMenuOpen((o) => !o)} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-secondary">{menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
+          </div>
         </div>
-        {menuOpen && (<nav className="w-full border-t border-border/60 bg-background/95"><div className="flex w-full flex-col px-5 py-2 lg:px-10">{navLinks.map((l) => (<a key={l.href} href={l.href} onClick={() => setMenuOpen(false)} className="rounded-lg px-2 py-3 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground">{l.label}</a>))}</div></nav>)}
+        {menuOpen && (<nav id="main-menu" className="border-t border-border/60 bg-background/95 backdrop-blur"><div className="mx-auto flex max-w-7xl flex-col px-5 py-2 lg:px-8">{navLinks.map((l) => (<a key={l.href} href={l.href} onClick={() => setMenuOpen(false)} className="rounded-lg px-2 py-3 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">{l.label}</a>))}</div></nav>)}
       </header>
-
-      <main className="w-full">
-        {/* HERO - full bleed, no max-width */}
-        <section className="relative w-full border-b border-border/60">
-          <div className="grid w-full gap-0 md:grid-cols-2 md:min-h-">
-            <div className="flex flex-col justify-center px-5 py-16 lg:px-12 lg:py-24 xl:px-20">
+      <main>
+        <section className="surface-glow relative overflow-hidden border-b border-border/60">
+          <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-16 md:min-h-[620px] md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-center md:gap-10 md:py-20 lg:gap-16 lg:px-8 lg:py-24">
+            <div className="min-w-0 md:py-4">
               <p className="text-xs uppercase tracking-[0.35em] text-primary">MOON AND EARTH TRADING AND PROJECTS 11CC</p>
-              <h1 className="mt-5 text-4xl leading-[1.05] font-bold md:text-5xl xl:text-7xl">Connecting your world,<span className="block text-primary">from the ground up.</span></h1>
+              <h1 className="mt-5 text-4xl leading-[1.05] font-bold md:text-5xl lg:text-6xl">Connecting your world,<span className="block text-primary">from the ground up.</span></h1>
               <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">Moon And Earth Trading And Projects 11cc installs network points and server rooms, supplies IT hardware and toners, and brands your team with embroidery and print — all under one roof.</p>
-              <div className="mt-8 flex flex-wrap gap-3"><a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground">Request a quote<ArrowUpRight className="h-4 w-4" /></a><a href="#services" className="inline-flex items-center gap-2 rounded-full border border-border px-8 py-3.5 text-sm font-semibold">Our services<ArrowUpRight className="h-4 w-4" /></a></div>
-              <dl className="mt-12 grid max-w-md grid-cols-3 gap-6">{stats.map((s) => (<div key={s.label}><dd className="font-display text-2xl font-bold">{s.value}</dd><p className="mt-1 text-xs text-muted-foreground">{s.label}</p></div>))}</dl>
+              <div className="mt-8 flex flex-wrap gap-3"><a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90">Request a quote<ArrowUpRight className="h-4 w-4" /></a><a href="#services" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary">Our services<ArrowUpRight className="h-4 w-4" /></a></div>
+              <dl className="mt-12 grid max-w-md grid-cols-3 gap-6">{stats.map((s) => (<div key={s.label}><dt className="sr-only">{s.label}</dt><dd className="font-display text-2xl font-bold text-foreground">{s.value}</dd><p className="mt-1 text-xs text-muted-foreground">{s.label}</p></div>))}</dl>
             </div>
-            <div className="relative w-full h- md:h-auto">
-              <img src={cyberpunkFiber.url} alt="Field crew installing fibre" className="absolute inset-0 h-full w-full object-cover" loading="eager" />
-            </div>
+            <div className="relative -mx-5 min-w-0 md:mx-0"><div className="overflow-hidden md:rounded-3xl md:shadow-[var(--shadow-card)]"><img src={cyberpunkFiber.url} alt="Field crew installing fibre" className="aspect-video w-full object-cover md:h-auto md:object-contain" loading="eager" /></div></div>
           </div>
         </section>
-
-        {/* SERVICES - full width */}
-        <section id="services" className="w-full px-5 py-20 lg:px-10 xl:px-16"><h2 className="text-3xl font-bold md:text-5xl">What we do</h2><p className="mt-3 max-w-2xl text-muted-foreground text-lg">Five service lines, one accountable team — from the trench outside to the branded shirt on your staff.</p><div className="mt-12 space-y-16">{serviceGroups.map((g) => (<div key={g.group}><div className="flex items-center gap-4"><h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">{g.group}</h3><span className="h-px flex-1 bg-border/70" /></div><div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{g.services.map((s) => (<ServiceCard key={s.title} service={s} />))}</div></div>))}</div></section>
-
-        <section id="about" className="w-full border-y border-border/60 bg-card/40"><div className="grid w-full gap-0 md:grid-cols-2"><div className="h- md:h- w-full"><img src={trenching.url} alt="Team excavating" className="h-full w-full object-cover" /></div><div className="flex flex-col justify-center px-5 py-16 lg:px-12 xl:px-20"><h2 className="text-3xl font-bold md:text-5xl">About the company</h2><p className="mt-6 text-lg text-muted-foreground">We have grown from consumable supply into a full-service infrastructure and branding partner. Our crews work across municipal, education and private sites.</p><a href="#contact" className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-border px-8 py-3.5 text-sm font-semibold">Get in touch<ArrowUpRight className="h-4 w-4" /></a></div></div></section>
-
-        <section id="contact" className="w-full px-5 py-20 lg:px-10 xl:px-16"><h2 className="text-3xl font-bold md:text-5xl">Visit or contact us</h2><div className="mt-10 grid gap-8 lg:grid-cols-2"><div className="space-y-5"><div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-6"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><div><p className="font-semibold">Office</p><p className="mt-1 text-sm text-muted-foreground">{ADDRESS}</p><a href={MAP_LINK} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">Open in Google Maps<ArrowUpRight className="h-3.5 w-3.5" /></a></div></div><div className="overflow-hidden rounded-2xl border border-border/70"><iframe title="Map" src={MAP_EMBED} loading="lazy" className="h- w-full border-0" /></div></div><ContactForm /></div></section>
+        <section id="services" className="mx-auto max-w-6xl px-5 py-20"><h2 className="text-3xl font-bold md:text-4xl">What we do</h2><p className="mt-3 max-w-2xl text-muted-foreground">Five service lines, one accountable team — from the trench outside to the branded shirt on your staff.</p><div className="mt-12 space-y-16">{serviceGroups.map((g) => (<div key={g.group}><div className="flex items-center gap-4"><h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">{g.group}</h3><span className="h-px flex-1 bg-border/70" /></div><div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">{g.services.map((s) => (<ServiceCard key={s.title} service={s} />))}</div></div>))}</div></section>
+        <section id="about" className="border-y border-border/60 bg-card/40"><div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-2 md:items-center"><div className="overflow-hidden rounded-3xl border border-border/70"><img src={trenching.url} alt="Team excavating" loading="lazy" className="h-full w-full object-cover" /></div><div><h2 className="text-3xl font-bold md:text-4xl">About the company</h2><p className="mt-5 text-muted-foreground">We have grown from consumable supply into a full-service infrastructure and branding partner.</p><p className="mt-4 text-muted-foreground">Whether it is a single toner delivery or a full server room and network rollout, the same team stands behind the work.</p><a href="#contact" className="mt-8 inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-secondary">Get in touch<ArrowUpRight className="h-4 w-4" /></a></div></div></section>
+        <section id="contact" className="mx-auto max-w-6xl px-5 py-20"><h2 className="text-3xl font-bold md:text-4xl">Visit or contact us</h2><div className="mt-10 grid gap-8 md:grid-cols-2"><div className="space-y-5"><div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><div><p className="font-semibold">Office</p><p className="mt-1 text-sm text-muted-foreground">{ADDRESS}</p><a href={MAP_LINK} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">Open in Google Maps<ArrowUpRight className="h-3.5 w-3.5" /></a></div></div><div className="overflow-hidden rounded-2xl border border-border/70"><iframe title="Map" src={MAP_EMBED} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-[320px] w-full border-0" /></div></div><ContactForm /></div></section>
       </main>
-
-      <footer className="w-full border-t border-border/60 bg-card/40"><div className="flex w-full flex-col gap-6 px-5 py-12 md:flex-row md:items-center md:justify-between lg:px-10 xl:px-16"><div className="h-16 w-"><img src={logo.url} alt="Moon And Earth logo" className="h-full w-full object-contain object-left" /></div><div className="text-sm text-muted-foreground"><p>{ADDRESS}</p><p className="mt-1">© 2009 Moon And Earth Trading And Projects 11cc.</p></div></div></footer>
+      <footer className="border-t border-border/60 bg-card/40"><div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 md:flex-row md:items-center md:justify-between"><div className="h-20 w-[270px] max-w-full overflow-hidden"><img src={logo.url} alt="Moon And Earth Trading logo" className="h-full w-full object-contain object-left" /></div><div className="text-sm text-muted-foreground"><p>{ADDRESS}</p><p className="mt-1">© 2009 Moon And Earth Trading And Projects 11cc. All rights reserved.</p></div></div></footer>
     </div>
   );
 }
