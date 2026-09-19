@@ -242,12 +242,12 @@ function Index() {
         <section id="about" className="border-y border-border/60 bg-card/40"><div className="mx-auto grid w-full max-w- gap-10 px-5 py-12 md:grid-cols-2 md:items-center md:py-16 lg:px-10 xl:px-16"><div className="overflow-hidden rounded-3xl border border-border/70 max-h- md:max-h-"><img src={trenching.url} alt="Team excavating" loading="lazy" className="h-full w-full object-cover object-center" /></div><div><h2 className="text-3xl font-bold md:text-4xl">ABOUT THE COMPANY</h2><p className="mt-5 text-muted-foreground">We have grown from consumable supply into a full-service infrastructure and branding partner.</p><p className="mt-4 text-muted-foreground">Whether it is a single toner delivery or a full server room and network rollout, the same team stands behind the work.</p><a href="#contact" className="mt-8 inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold transition-colors hover:bg-secondary">Get in touch<ArrowUpRight className="h-4 w-4" /></a></div></div></section>
 
         {/* CONTACT - was max-w-6xl, now full width */}
-                <section id="contact" className="w-full border-t border-border/60 bg-card/40">
+        <section id="contact" className="w-full border-t border-border/60 bg-card/40">
           <div className="mx-auto w-full max-w- px-5 py-16 lg:px-10 xl:px-12">
             <h2 className="text-3xl font-bold md:text-4xl text-left">VISIT OR CONTACT US</h2>
             <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-stretch">
-              {/* LEFT - stretched */}
-              <div className="flex h-full min-h- flex-col gap-5">
+              {/* LEFT - h-full so it matches right form height */}
+              <div className="flex h-full flex-col gap-5">
                 <div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div>
@@ -258,21 +258,20 @@ function Index() {
                     </a>
                   </div>
                 </div>
-                <div className="flex-1 overflow-hidden rounded-2xl border border-border/70">
+                {/* MAP - flex-1 = fills all remaining height to match form */}
+                <div className="flex-1 overflow-hidden rounded-2xl border border-border/70 min-h-">
                   <iframe
                     title="Map"
                     src={MAP_EMBED}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="h-full min-h- w-full border-0"
+                    className="h-full w-full border-0"
                   />
                 </div>
               </div>
-              {/* RIGHT - stretched to match */}
-              <div className="flex h-full min-h- flex-col">
-                <div className="h-full rounded-2xl border border-border/70 bg-card p-6 [&>form]:flex [&>form]:h-full [&>form]:flex-col">
-                  <ContactForm />
-                </div>
+              {/* RIGHT */}
+              <div className="h-full">
+                <ContactForm />
               </div>
             </div>
           </div>
