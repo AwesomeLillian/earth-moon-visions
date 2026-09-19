@@ -245,9 +245,9 @@ function Index() {
         <section id="contact" className="w-full border-t border-border/60 bg-card/40">
           <div className="mx-auto w-full max-w- px-5 py-16 lg:px-10 xl:px-12">
             <h2 className="text-3xl font-bold md:text-4xl text-left">VISIT OR CONTACT US</h2>
-            <div className="mt-8 grid gap-8 lg:grid-cols-2">
-              {/* LEFT - FIXED 640px */}
-              <div className="flex h- flex-col gap-5">
+            <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-stretch">
+              {/* LEFT - stretched */}
+              <div className="flex h-full min-h- flex-col gap-5">
                 <div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div>
@@ -259,12 +259,20 @@ function Index() {
                   </div>
                 </div>
                 <div className="flex-1 overflow-hidden rounded-2xl border border-border/70">
-                  <iframe title="Map" src={MAP_EMBED} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-full w-full border-0" />
+                  <iframe
+                    title="Map"
+                    src={MAP_EMBED}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="h-full min-h- w-full border-0"
+                  />
                 </div>
               </div>
-              {/* RIGHT - FIXED 640px */}
-              <div className="h-">
-                <ContactForm />
+              {/* RIGHT - stretched to match */}
+              <div className="flex h-full min-h- flex-col">
+                <div className="h-full rounded-2xl border border-border/70 bg-card p-6 [&>form]:flex [&>form]:h-full [&>form]:flex-col">
+                  <ContactForm />
+                </div>
               </div>
             </div>
           </div>
