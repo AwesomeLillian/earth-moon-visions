@@ -244,19 +244,27 @@ function Index() {
         {/* CONTACT - was max-w-6xl, now full width */}
         <section id="contact" className="w-full border-t border-border/60 bg-card/40">
           <div className="mx-auto w-full max-w- px-5 py-16 lg:px-10">
-            <h2 className="text-3xl font-bold md:text-4xl">VISIT OR CONTACT US</h2>
-            <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-stretch">
+            <h2 className="text-3xl font-bold md:text-4xl">Visit or contact us</h2>
+            <div className="mt-8 grid gap-8 lg:grid-cols-[420px_1fr] lg:gap-10 lg:items-stretch justify-center">
               <div className="flex flex-col gap-5">
                 <div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div>
                     <p className="font-semibold">Office</p>
                     <p className="mt-1 text-sm text-muted-foreground">{ADDRESS}</p>
-                    <a href={MAP_LINK} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">Open in Google Maps<ArrowUpRight className="h-3.5 w-3.5" /></a>
+                    <a href={MAP_LINK} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
+                      Open in Google Maps<ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
                   </div>
                 </div>
                 <div className="flex-1 overflow-hidden rounded-2xl border border-border/70 min-h-">
-                  <iframe title="Map" src={MAP_EMBED} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-full w-full border-0 min-h-" />
+                  <iframe
+                    title="Map"
+                    src={MAP_EMBED}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="h-full w-full border-0 min-h-"
+                  />
                 </div>
               </div>
               <div className="h-full">
