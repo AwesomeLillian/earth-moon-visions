@@ -243,10 +243,11 @@ function Index() {
 
         {/* CONTACT - was max-w-6xl, now full width */}
         <section id="contact" className="w-full border-t border-border/60 bg-card/40">
-          <div className="mx-auto w-full max-w- px-5 py-16 lg:px-10">
-            <h2 className="text-3xl font-bold md:text-4xl">VISIT OR CONTACT US</h2>
-            <div className="mt-8 grid gap-8 lg:grid-cols-[380px_520px] lg:gap-10 justify-center items-start">
-              <div className="flex flex-col gap-5 w-full max-w- mx-auto lg:mx-0">
+          <div className="mx-auto w-full max-w- px-5 py-16 lg:px-10 xl:px-12">
+            <h2 className="text-3xl font-bold md:text-4xl text-left">VISIT OR CONTACT US</h2>
+            <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start">
+              {/* LEFT */}
+              <div className="flex flex-col gap-5 w-full">
                 <div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div>
@@ -267,7 +268,8 @@ function Index() {
                   />
                 </div>
               </div>
-              <div className="w-full max-w- mx-auto lg:mx-0">
+              {/* RIGHT */}
+              <div className="w-full">
                 <ContactForm />
               </div>
             </div>
