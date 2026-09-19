@@ -189,13 +189,13 @@ function ContactForm() {
     finally { setSending(false); }
   };
   return (
-    <form onSubmit={onSubmit} className="flex h-full min-h- flex-col space-y-4 rounded-2xl border border-border/70 bg-card p-6">
+    <form onSubmit={onSubmit} className="flex h- flex-col space-y-4 rounded-2xl border border-border/70 bg-card p-6">
       <div><h3 className="text-lg font-semibold">Send us a message</h3><p className="mt-1 text-sm text-muted-foreground">Tell us what you need and we will get back to you.</p></div>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm"><span className="text-muted-foreground">Name</span><input value={name} onChange={(e) => setName(e.target.value)} maxLength={100} required className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary" /></label>
         <label className="block text-sm"><span className="text-muted-foreground">Email</span><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={255} required className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary" /></label>
       </div>
-      <label className="flex flex-1 flex-col text-sm"><span className="text-muted-foreground">Message</span><textarea value={message} onChange={(e) => setMessage(e.target.value)} maxLength={1000} required className="mt-1 flex-1 min-h- w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary" /></label>
+      <label className="flex flex-1 flex-col text-sm"><span className="text-muted-foreground">Message</span><textarea value={message} onChange={(e) => setMessage(e.target.value)} maxLength={1000} required className="mt-1 flex-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary" /></label>
       {error && <p className="text-sm text-destructive">{error}</p>}{status && <p className="text-sm text-green-600 font-medium">{status}</p>}
       <button type="submit" disabled={sending} className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50">{sending? "Sending..." : "Send message"}<ArrowUpRight className="h-4 w-4" /></button>
     </form>
@@ -245,9 +245,9 @@ function Index() {
         <section id="contact" className="w-full border-t border-border/60 bg-card/40">
           <div className="mx-auto w-full max-w- px-5 py-16 lg:px-10 xl:px-12">
             <h2 className="text-3xl font-bold md:text-4xl text-left">VISIT OR CONTACT US</h2>
-            <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-stretch">
-              {/* LEFT - h-full so it matches right form height */}
-              <div className="flex h-full flex-col gap-5">
+            <div className="mt-8 grid gap-8 lg:grid-cols-2">
+              {/* LEFT - FIXED 640px */}
+              <div className="flex h- flex-col gap-5">
                 <div className="flex gap-3 rounded-2xl border border-border/70 bg-card p-5">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div>
@@ -258,19 +258,12 @@ function Index() {
                     </a>
                   </div>
                 </div>
-                {/* MAP - flex-1 = fills all remaining height to match form */}
-                <div className="flex-1 overflow-hidden rounded-2xl border border-border/70 min-h-">
-                  <iframe
-                    title="Map"
-                    src={MAP_EMBED}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="h-full w-full border-0"
-                  />
+                <div className="flex-1 overflow-hidden rounded-2xl border border-border/70">
+                  <iframe title="Map" src={MAP_EMBED} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-full w-full border-0" />
                 </div>
               </div>
-              {/* RIGHT */}
-              <div className="h-full">
+              {/* RIGHT - FIXED 640px */}
+              <div className="h-">
                 <ContactForm />
               </div>
             </div>
